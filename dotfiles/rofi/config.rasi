@@ -1,0 +1,7 @@
+configuration {
+  modi: "drun,run";
+  show-icons: true;
+  icon-theme: "Gruvbox-Plus-Dark";
+  font: "JetBrainsMono Nerd Font 12";
+  theme: "~/.config/rofi/gruvbox-dark.rasi";
+}
