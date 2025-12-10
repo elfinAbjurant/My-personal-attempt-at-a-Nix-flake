@@ -1,35 +1,48 @@
-{ config, pkgs, hyprland, ... }:
-
 {
-  home.username = "james";
-  home.homeDirectory = "/home/james";
+  description = "James' NixOS + Hyprland flake";
 
-  programs.home-manager.enable = true;
+  inputs = {
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
-  # Terminal, editor, etc.
-  home.packages = with pkgs; [
-    neovim
-    alacritty
-  ];
+    home-manager = {
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
-  # Put your Hyprland config file under Home Manager control if you want, or just
-  # let it manage the directory and keep the raw config file. [web:39][web:37]
-  xdg.configFile."hypr/hyprland.conf".text = ''
-  xdg.configFile."hypr/hyprland.conf".source =
-    /home/james/.config/dotfiles/hyprland.conf;
+    hyprland.url = "github:hyprwm/Hyprland";
+  };
 
-  # Alacritty config from your existing file:
-  xdg.configFile."alacritty/alacritty.toml".source =
-    /home/james/.config/dotfiles/alacritty.toml;
+  outputs = { self, nixpkgs, home-manager, hyprland, ... }:
+  let
+    system = "x86_64-linux";
+  in {
+    nixosConfigurations.nixos-hypr = nixpkgs.lib.nixosSystem {
+      inherit system;
 
-  # Optionally use Home Manager's Hyprland module instead of a raw file. [web:39][web:31]
-  # wayland.windowManager.hyprland = {
-  #   enable = true;
-  #   package = hyprland.packages.${pkgs.system}.hyprland;
-  #   extraConfig = ''
-  #     # extra Hyprland config here
-  #   '';
-  # };
+      specialArgs = {
+        inherit hyprland;
+      };
 
-  home.stateVersion = "24.05";
+      modules = [
+        ./system/configuration.nix
+
+        # Home Manager as a NixOS module
+        home-manager.nixosModules.home-manager
+        {
+          home-manager.useGlobalPkgs = true;
+          home-manager.useUserPackages = true;
+          home-manager.users.james = import ./home/james.nix;
+        }
+
+        # Hyprland NixOS module using git package from the Hyprland flake
+        {
+          programs.hyprland = {
+            enable = true;
+            xwayland.enable = true;
+            package = hyprland.packages.${system}.hyprland;
+          };
+        }
+      ];
+    };
+  };
 }
