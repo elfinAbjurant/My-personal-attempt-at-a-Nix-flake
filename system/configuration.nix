@@ -23,14 +23,14 @@
 
   # Allow sudo for wheel (no password prompt)
   security.sudo.enable = true;
-  security.sudo.wheelNeedsPassword = false;  [web:25]
+  security.sudo.wheelNeedsPassword = false;
 
   networking.networkmanager.enable = true;
 
   # Bluetooth
   hardware.bluetooth.enable = true;
   hardware.bluetooth.powerOnBoot = true;
-  services.blueman.enable = true;           [web:12]
+  services.blueman.enable = true; 
 
   # Sound (PipeWire)
   sound.enable = true;
@@ -42,16 +42,16 @@
     alsa.support32Bit = true;
     pulse.enable = true;
     jack.enable = true;
-  };  [web:3]
+  };
 
   # XDG portal for Wayland / Hyprland
   xdg.portal = {
     enable = true;
     extraPortals = [ pkgs.xdg-desktop-portal-gtk pkgs.xdg-desktop-portal-hyprland ];
-  };  [web:3][web:36]
+  };
 
   # Enable flakes
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];  [web:69]
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   # Default applications (Firefox as default browser)
   xdg.mime.enable = true;
@@ -62,23 +62,27 @@
     "x-scheme-handler/https" = "firefox.desktop";
     "x-scheme-handler/about" = "firefox.desktop";
     "x-scheme-handler/unknown" = "firefox.desktop";
-  };  [web:3]
+  };
 
   # Desktop services
   services.dbus.enable = true;
   services.gvfs.enable = true;
   services.udisks2.enable = true;
 
-  # Login manager / Hyprland start
-  services.greetd = {
+  # LY display manager (login greeter)
+  services.ly = {
     enable = true;
     settings = {
-      default_session = {
-        command = "Hyprland";
-        user = "james";
+      general = {
+        load_command = "exec startx";
       };
     };
-  };  [web:36]
+  };
+
+  # Ensure Hyprland is available as a session option for LY
+  environment.sessionVariables = {
+    DISPLAY = ":0";
+  };
 
   # System-wide packages (apps, Hyprland extras, theming tools)
   environment.systemPackages = with pkgs; [
@@ -105,7 +109,7 @@
     nemo            # file manager
     nwg-look        # GTK theme chooser (still handy)
     imagemagick     # useful in many rices
-  ];  [web:54][web:55]
+  ];
 
   # Fonts
   fonts.packages = with pkgs; [
