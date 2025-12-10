@@ -12,31 +12,31 @@
 
   # Alacritty config from repo
   xdg.configFile."alacritty/alacritty.toml".source =
-    .config/alacritty/alacritty.toml;
+    ./home/.config/alacritty/alacritty.toml;
 
   # Hyprland configs from repo
   xdg.configFile."hypr/hyprland.conf".source =
-    .config/hypr/hyprland.conf;
+    ./home/.config/hypr/hyprland.conf;
 
   xdg.configFile."hypr/hyprpaper.conf".source =
-    .config/hypr/hyprpaper.conf;
+    ./home/.config/hypr/hyprpaper.conf;
 
   # Waybar config from repo
   xdg.configFile."waybar/config".source =
-    .config/waybar/config;
+    ./home/.config/waybar/config;
 
   xdg.configFile."waybar/style.css".source =
-    .config/waybar/style.css;
+    ./home/.config/waybar/style.css;
 
   # Neovim config from repo
   xdg.configFile."nvim/init.lua".source =
-    .config/nvim/init.lua;
+    ./home/.config/nvim/init.lua;
 
   xdg.configFile."nvim/lua/config/plugins.lua".source =
-    .config/nvim/lua/config/plugins.lua;
+    ./home/.config/nvim/lua/config/plugins.lua;
 
   xdg.configFile."nvim/lua/config/ui.lua".source =
-    .config/nvim/lua/config/ui.lua;
+    ./home/.config/nvim/lua/config/ui.lua;
 
   # GTK theming
   gtk = {
