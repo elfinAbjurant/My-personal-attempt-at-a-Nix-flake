@@ -95,6 +95,16 @@
     rofi-wayland
     firefox
     gruvbox-plus-icons
+
+    # Hyprland-related utilities and look
+    waybar          # status bar
+    swaync          # notification daemon
+    hyprpaper       # wallpaper daemon
+    hyprpicker      # color picker
+    hyprlock        # lock screen
+    nemo            # file manager
+    nwg-look        # GTK theme chooser
+    imagemagick     # useful in many rices
   ];
 
   # Fonts
@@ -109,6 +119,4 @@
   # Shell
   programs.zsh.enable = true;
 
-  system.stateVersion = "24.05";
-}
-
+  system.stateVersion =
