@@ -97,14 +97,18 @@
     gruvbox-plus-icons
 
     # Hyprland-related utilities and look
-    waybar          # status bar
-    swaync          # notification daemon
-    hyprpaper       # wallpaper daemon
-    hyprpicker      # color picker
-    hyprlock        # lock screen
-    nemo            # file manager
-    nwg-look        # GTK theme chooser
-    imagemagick     # useful in many rices
+    waybar
+    swaync
+    hyprpaper
+    hyprpicker
+    hyprlock
+    nemo
+    nwg-look
+    imagemagick
+
+    # GTK theme & icons
+    gruvbox-theme        # GTK theme (if available in your nixpkgs)
+    tela-icon-theme      # good modern icon theme; combine with gruvbox-plus-icons
   ];
 
   # Fonts
