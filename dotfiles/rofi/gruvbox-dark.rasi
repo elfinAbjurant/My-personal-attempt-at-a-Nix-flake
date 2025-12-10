@@ -1,0 +1,40 @@
+* {
+  bg:    #282828;
+  bg-alt:#3c3836;
+  fg:    #ebdbb2;
+  accent:#fabd2f;
+  font:  "JetBrainsMono Nerd Font 12";
+}
+
+window {
+  background-color: @bg;
+  border: 2px;
+  border-color: @accent;
+  padding: 10px;
+}
+
+mainbox {
+  spacing: 10px;
+}
+
+inputbar {
+  background-color: @bg-alt;
+  text-color: @fg;
+  padding: 6px 8px;
+}
+
+listview {
+  background-color: @bg;
+  spacing: 4px;
+}
+
+element {
+  background-color: @bg;
+  text-color: @fg;
+  padding: 4px 8px;
+}
+
+element selected {
+  background-color: @accent;
+  text-color: @bg;
+}
