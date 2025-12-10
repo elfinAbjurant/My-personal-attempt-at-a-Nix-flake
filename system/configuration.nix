@@ -115,8 +115,15 @@
   ];
 
   # Fonts
-  fonts.packages = with pkgs; [
-    (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
-    jetbrains-mono
-    noto-fonts
-    noto
+  fonts = {
+    packages = with pkgs; [
+      (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
+      jetbrains-mono
+      noto-fonts
+      noto
+    ];
+  };
+
+  system.stateVersion = "24.05"; # or whatever you used before
+}
+
