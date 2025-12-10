@@ -1,0 +1,80 @@
+# $HOME/.config/alacritty/alacritty.toml
+# by Rito Ghosh 2023-10-06
+
+# Alacritty now uses TOML formatting for its config files.
+# This is a simple example.
+
+# There are the specification here: https://github.com/alacritty/alacritty/blob/master/extra/man/alacritty.5.scd
+# It is not obvious how it translates to TOML. But it is extremely straightforward.
+
+# example: WINDOW, COLORS, etc. are tables, and should be represented as [window], [colors], respectively.
+# specifics of variables go under them. e.g.- look under "dynamic_padding" under-
+# https://github.com/alacritty/alacritty/blob/master/extra/man/alacritty.5.scd#window
+# write `dynamic_padding = true` (without backticks -`) under the table [window]
+# for variables with multiple values, use "dotted keys". Like setting `padding.x = 5` under [window].
+# This is simple. If not clear, do several trials and errors.
+
+# Below is my initial set-up. The TOML homepage (https://toml.io/en/v1.0.0) was very helpful in figuring this out. 
+# I put the file alacritty.toml in $HOME/.config/alacritty. However it can be kept anywhere among the places mentioned in
+# https://github.com/alacritty/alacritty/tree/master#configuration
+
+[window]
+
+opacity = 0.7
+
+padding.x = 10
+padding.y = 10
+
+decorations = "Full"
+decorations_theme_variant =  "Dark"
+
+[font]
+
+normal.family = "JetBrainsMonoNerdFont"
+bold.family = "auto"
+italic.family = "auto"
+bold_italic.family = "auto"
+
+size = 11.0
+
+[colors.primary]
+
+foreground = "#ebdbb2"
+background = "#282828"
+#dim_foreground = ""
+#bright_foreground = ""
+
+[colors.cursor]
+
+text = "CellBackground" 
+cursor = "CellForeground"
+
+[colors.search]
+
+#matches = { foreground = _"<string>"_, background = _"<string>"_ }
+
+#focused_match = { foreground = _"<string>"_, background = _"<string>"_ }
+
+[colors.hints]
+
+#start = { foreground = _"<string>"_, background = _"<string>"_ }
+
+#end = { foreground = _"<string>"_, background = _"<string>"_ }
+
+#line_indicator = { foreground = "", background = "" }
+
+#footer_bar = { foreground = "", background = "" }
+
+#selection = { text = "#928374", background = "#ebdbb2" }
+
+[bell]
+
+[selection]
+
+[cursor]
+
+#style=(,)
+
+[mouse]
+
+hide_when_typing = false
