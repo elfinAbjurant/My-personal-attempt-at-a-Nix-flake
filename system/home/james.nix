@@ -6,28 +6,49 @@
 
   programs.home-manager.enable = true;
 
-  # Extra user packages (optional)
   home.packages = with pkgs; [
-    # Add per-user packages here if needed
+    # extra per-user packages if needed
   ];
 
-  # Alacritty config managed via your repo
+  # Alacritty config from repo
   xdg.configFile."alacritty/alacritty.toml".source =
-    /home/james/dotfiles/alacritty.toml;
+    .config/alacritty/alacritty.toml;
 
-  # GTK theming: auto-apply theme and icons
+  # Hyprland configs from repo
+  xdg.configFile."hypr/hyprland.conf".source =
+    .config/hypr/hyprland.conf;
+
+  xdg.configFile."hypr/hyprpaper.conf".source =
+    .config/hypr/hyprpaper.conf;
+
+  # Waybar config from repo
+  xdg.configFile."waybar/config".source =
+    .config/waybar/config;
+
+  xdg.configFile."waybar/style.css".source =
+    .config/waybar/style.css;
+
+  # Neovim config from repo
+  xdg.configFile."nvim/init.lua".source =
+    .config/nvim/init.lua;
+
+  xdg.configFile."nvim/lua/config/plugins.lua".source =
+    .config/nvim/lua/config/plugins.lua;
+
+  xdg.configFile."nvim/lua/config/ui.lua".source =
+    .config/nvim/lua/config/ui.lua;
+
+  # GTK theming
   gtk = {
     enable = true;
 
     theme = {
-      # Set to the actual GTK theme directory name under /run/current-system/sw/share/themes
-      name = "Gruvbox-Dark";
-      package = null; # theme package is provided system-wide
+      name = "Gruvbox-Dark";        # adjust to actual theme name
+      package = null;
     };
 
     iconTheme = {
-      # Set to the actual icon theme name from gruvbox-plus-icons or another icon theme
-      name = "Gruvbox-Plus-Dark";
+      name = "Gruvbox-Plus-Dark";   # adjust to actual icon theme name
       package = null;
     };
 
@@ -36,10 +57,15 @@
       size = 24;
       package = null;
     };
-  };  [web:63]
+  };
 
-  # Hyprland config remains a normal file at:
-  #   /home/james/.config/hypr/hyprland.conf
+  # Zsh with rebuild alias (optional)
+  programs.zsh = {
+    enable = true;
+    shellAliases = {
+      nrs = "cd /etc/nixos && sudo nixos-rebuild switch --flake .#nixos-hypr";
+    };
+  };
 
   home.stateVersion = "24.05";
 }
