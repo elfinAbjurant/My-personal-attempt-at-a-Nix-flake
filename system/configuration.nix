@@ -100,6 +100,9 @@
     firefox
     gruvbox-plus-icons
 
+    # Display Manager
+    ly
+
     # Hyprland-related utilities and look
     waybar          # status bar
     swaync          # notification daemon
