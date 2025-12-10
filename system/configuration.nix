@@ -23,14 +23,14 @@
 
   # Allow sudo for wheel (no password prompt)
   security.sudo.enable = true;
-  security.sudo.wheelNeedsPassword = false;
+  security.sudo.wheelNeedsPassword = false;  [web:25]
 
   networking.networkmanager.enable = true;
 
   # Bluetooth
   hardware.bluetooth.enable = true;
   hardware.bluetooth.powerOnBoot = true;
-  services.blueman.enable = true;
+  services.blueman.enable = true;           [web:12]
 
   # Sound (PipeWire)
   sound.enable = true;
@@ -42,16 +42,16 @@
     alsa.support32Bit = true;
     pulse.enable = true;
     jack.enable = true;
-  };
+  };  [web:3]
 
   # XDG portal for Wayland / Hyprland
   xdg.portal = {
     enable = true;
     extraPortals = [ pkgs.xdg-desktop-portal-gtk pkgs.xdg-desktop-portal-hyprland ];
-  };
+  };  [web:3][web:36]
 
   # Enable flakes
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];  [web:69]
 
   # Default applications (Firefox as default browser)
   xdg.mime.enable = true;
@@ -62,7 +62,7 @@
     "x-scheme-handler/https" = "firefox.desktop";
     "x-scheme-handler/about" = "firefox.desktop";
     "x-scheme-handler/unknown" = "firefox.desktop";
-  };
+  };  [web:3]
 
   # Desktop services
   services.dbus.enable = true;
@@ -78,9 +78,9 @@
         user = "james";
       };
     };
-  };
+  };  [web:36]
 
-  # System-wide packages
+  # System-wide packages (apps, Hyprland extras, theming tools)
   environment.systemPackages = with pkgs; [
     # core tools
     git
@@ -97,30 +97,19 @@
     gruvbox-plus-icons
 
     # Hyprland-related utilities and look
-    waybar
-    swaync
-    hyprpaper
-    hyprpicker
-    hyprlock
-    nemo
-    nwg-look
-    imagemagick
-
-    # GTK theme & icons
-    gruvbox-theme        # GTK theme (if available in your nixpkgs)
-    tela-icon-theme      # good modern icon theme; combine with gruvbox-plus-icons
-  ];
+    waybar          # status bar
+    swaync          # notification daemon
+    hyprpaper       # wallpaper daemon
+    hyprpicker      # color picker
+    hyprlock        # lock screen
+    nemo            # file manager
+    nwg-look        # GTK theme chooser (still handy)
+    imagemagick     # useful in many rices
+  ];  [web:54][web:55]
 
   # Fonts
   fonts.packages = with pkgs; [
+    (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
     jetbrains-mono
-    nerdfonts
     noto-fonts
-    noto-fonts-emoji
-    noto-fonts-extra
-  ];
-
-  # Shell
-  programs.zsh.enable = true;
-
-  system.stateVersion =
+    noto
