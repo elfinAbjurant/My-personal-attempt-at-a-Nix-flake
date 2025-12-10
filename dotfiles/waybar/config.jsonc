@@ -1,1 +1,86 @@
+{
+  "layer": "top",
+  "position": "top",
+  "height": 30,
+  "margin-top": 6,
+  "margin-left": 8,
+  "margin-right": 8,
+  "modules-left": [
+    "custom/logo",
+    "hyprland/workspaces",
+    "hyprland/window"
+  ],
+  "modules-center": [
+    "clock"
+  ],
+  "modules-right": [
+    "pulseaudio",
+    "network",
+    "battery",
+    "tray"
+  ],
 
+  "hyprland/workspaces": {
+    "active-only": false,
+    "all-outputs": true,
+    "format": "{name}",
+    "on-click": "hyprctl dispatch workspace {name}",
+    "on-scroll-up": "hyprctl dispatch workspace e+1",
+    "on-scroll-down": "hyprctl dispatch workspace e-1",
+    "sort-by-number": true
+  },
+
+  "hyprland/window": {
+    "format": "{title}",
+    "max-length": 60,
+    "separate-outputs": false
+  },
+
+  "clock": {
+    "format": "{:%a %d %b  %H:%M}",
+    "tooltip": true,
+    "tooltip-format": "{:%A, %d %B %Y\n%H:%M:%S}"
+  },
+
+  "pulseaudio": {
+    "format": "{icon} {volume}%",
+    "format-muted": "  muted",
+    "format-icons": {
+      "default": ["", ""]
+    },
+    "scroll-step": 3,
+    "on-click": "pavucontrol"
+  },
+
+  "network": {
+    "format-wifi": "  {essid}",
+    "format-ethernet": "󰈁  {ipaddr}",
+    "format-disconnected": "󰖪  down",
+    "tooltip-format": "{ifname}: {ipaddr}\n{signalStrength}%",
+    "max-length": 30
+  },
+
+  "battery": {
+    "format": "{icon} {capacity}%",
+    "format-charging": " {capacity}%",
+    "format-plugged": " {capacity}%",
+    "format-alt": "{time}",
+    "full-at": 98,
+    "states": {
+      "warning": 25,
+      "critical": 10
+    },
+    "format-icons": ["󰁺", "󰁼", "󰁾", "󰂀", "󰂂", "󰁹"]
+  },
+
+  "tray": {
+    "icon-size": 18,
+    "spacing": 8
+  },
+
+  "custom/logo": {
+    "format": "",
+    "tooltip": false,
+    "on-click": "rofi -show drun -show-icons"
+  }
+}
